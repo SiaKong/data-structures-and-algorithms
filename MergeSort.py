@@ -1,3 +1,5 @@
+#O(n log n)
+
 #the recursive part - halves the arrays
 def merge_sort(arr):
     if len(arr) <= 1:
@@ -26,5 +28,5 @@ def merge(left, right):
 
     result += left[i:]
     result += right[j:]
-    
+
     return result
