@@ -1,3 +1,6 @@
+#O(n log n) if pivot is chosen properly
+#O(n^2) for worst case
+
 def partition(arr, low, high):
     pivot = arr[high]
     i = low - 1
