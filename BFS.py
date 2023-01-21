@@ -1,9 +1,11 @@
-def bfs(graph, node):
+#O(|V| + |E|) where V is the set of vertices and E is the set of edges
+
+def bfs(graph, root):
     queue = []
     visited = []
 
-    visited.append(node)
-    queue.append(node)
+    visited.append(root)
+    queue.append(root)
     
     while queue:
         vertex = queue.pop(0)
