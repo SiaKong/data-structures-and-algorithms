@@ -1,7 +1,7 @@
 #O(n)
 
 def counting_sort(arr):
-    # find the maximum element in arr
+    # find the size of the array
     max_element = len(arr)
 
     # create a counting array with a slot for each element from 0 to max_element
