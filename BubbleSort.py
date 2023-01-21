@@ -1,3 +1,5 @@
+#O(n^2)
+
 def bubble_sort(arr):
     n = len(arr)
     # Traverse through all elements in array
