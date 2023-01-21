@@ -23,6 +23,3 @@ def counting_sort(arr):
         counting_arr[element] -= 1
         output_arr[counting_arr[element]] = element
     return output_arr
-
-
-print(counting_sort([5,2,3,6,1,3,4,7]))
