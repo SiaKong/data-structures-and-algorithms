@@ -42,24 +42,59 @@ class BST:
             return self.search(val, node.right)
             
     #O(h): where h is the height of the tree
-    def delete(self, val, node=None):
-        if not node:
-            node = self.root
-        if not node:
-            return None
-        if val < node.val:
-            node.left = self.delete(val, node.left)
-        elif val > node.val:
-            node.right = self.delete(val, node.right)
-        else:
-            if not node.left and not node.right:
-                return None
-            elif not node.left:
-                return node.right
-            elif not node.right:
-                return node.left
+    def delete(self, data):
+        current = self.root
+        parent = None
+        is_left = None
+
+        # Find the node to be deleted and its parent
+        while current is not None and current.data != data:
+            parent = current
+            if data < current.data:
+                is_left = True
+                current = current.left
             else:
-                min_val = self.find_min(node.right)
-                node.val = min_val
-                node.right = self.delete(min_val, node.right)
-        return node
+                is_left = False
+                current = current.right
+
+        # Node not found
+        if current is None:
+            return False
+
+        # Case 1: Node has no children
+        if current.left is None and current.right is None:
+            if parent is None:
+                self.root = None
+            elif is_left:
+                parent.left = None
+            else:
+                parent.right = None
+
+        # Case 2: Node has one child
+        elif current.left is None or current.right is None:
+            if current.left is not None:
+                child = current.left
+            else:
+                child = current.right
+            if parent is None:
+                self.root = child
+            elif is_left:
+                parent.left = child
+            else:
+                parent.right = child
+
+        # Case 3: Node has two children
+        else:
+            # Find the in-order successor of the node
+            # (i.e. the leftmost child in the right subtree)
+            successor = current.right
+            while successor.left is not None:
+                successor = successor.left
+
+            # Replace the node's data with that of its in-order successor
+            current.data = successor.data
+
+            # Recursively delete the in-order successor
+            self.delete(successor.data)
+
+        return True
